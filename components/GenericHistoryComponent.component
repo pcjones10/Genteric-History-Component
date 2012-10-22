@@ -1,0 +1,28 @@
+<apex:component controller="GenericHistoryComponentController">
+
+    <!-- Attribute Definition -->
+    <apex:attribute name="myObject" description="Object we wish to view the history of" type="SObject" required="true" assignTo="{!myObject}" />
+    <apex:attribute name="recordLimit" description="Number of lines of history to display" type="Integer" required="false" assignTo="{!recordLimit}" />
+    
+    <apex:form >
+	    <!-- Object History Related List -->
+	    <apex:pageBlock id="historyTable" title="{!objectLabel} History">
+	        <apex:pageBlockTable value="{!ObjectHistory}" var="History" >
+	            <apex:column headerValue="Date"  value="{!History.thedate}"/>
+	            <apex:column headerValue="User">
+	                <apex:outputLink value="/{!History.userId}"> {!History.who} </apex:outputLink> 
+	            </apex:column>
+	            <apex:column headerValue="Action"><apex:outputText escape="false" value="{!History.action}"/></apex:column>
+	        </apex:pageBlockTable>
+	        
+	        <apex:outputPanel rendered="{!tableSize > rowCount}">
+		       <div class="pShowMore">
+		       		<apex:commandLink value="Show more »" rerender="historyTable" action="{!refreshObjectHistory}">
+		       		</apex:commandLink>
+		       		&nbsp;|&nbsp;
+		       		<a href="/_ui/common/history/ui/EntityHistoryFilterPage?id={!myObjectId}">Go to list&nbsp;»</a>
+		       </div>
+	    	</apex:outputPanel>
+	    </apex:pageBlock>
+	</apex:form>
+</apex:component>
