@@ -228,8 +228,6 @@ public class GenericHistoryComponentController {
     
 	  @isTest static void myTestGenericHistoryComponentController() {
 	        
-	        //Unit test by: Mike Katulka @ www.itedgecrm.com - mike@itedgecrm.com
-	        //Component by: http://boards.developerforce.com/t5/Visualforce-Development/History-related-List-using-Visualforce/t...
 	        //83% coverage
 	        
 	        //***Instructions MUST READ***
